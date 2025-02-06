@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'Auteur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            border-radius: 10px;
+            width: 150px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+            margin: 5px 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Détails de l'Auteur</h1>
+        <img src="{{ asset(author.picture) }}" alt="{{ author.username }}">
+        <p><strong>Nom :</strong> {{ author.username }}</p>
+        <p><strong>Email :</strong> {{ author.email }}</p>
+        <p><strong>Nombre de livres :</strong> {{ author.nb_books }}</p>
+        <a href="{{ path('list_authors') }}">Retour à la liste</a>
+    </div>
+
+</body>
+</html>

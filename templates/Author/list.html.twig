@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Auteurs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .author-card {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .author-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .details-link {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .details-link:hover {
+            text-decoration: underline;
+        }
+        .total-info {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body class="container mt-4">
+    <h2 class="mb-4">📚 Liste des Auteurs</h2>
+
+{# 4. Ajouter une condition dans le cas où le tableau n’est pas défini et/ou vide #}
+
+    {% if authors is defined and authors|length > 0 %}
+      {% for author in authors %}
+    <div class="author-card">
+        <img src="{{ asset(author.picture) }}" alt="{{ author.username }}">
+        <div>
+{# 5.Afficher les noms des auteurs en majuscule #}
+            <h4 class="mb-1">{{ author.username|upper }}</h4>
+            <p class="text-muted mb-1">{{ author.email }}</p>
+            <p>📖 Nombre de livres : <strong>{{ author.nb_books }}</strong></p>
+{# 8. Ajouter un lien « details » devant chaque auteur #}
+            <a href="{{ path('author_details', {id: author.id}) }}" class="details-link">Détails</a>
+        </div>
+    </div>
+{% endfor %}
+
+{# 6.Afficher nombre des auteurs  #}
+        <p class="total-info">👥 Nombre total d’auteurs : {{ authors|length }}</p>
+{# 7. Afficher le nombre total des livres de tous les auteurs #}
+        <p class="total-info">📚 Nombre total de livres : {{ authors|reduce((carry, author) => carry + author.nb_books, 0) }}</p>
+
+    {% else %}
+        <p class="alert alert-warning">Aucun auteur trouvé.</p>
+    {% endif %}
+</body>
+</html>
