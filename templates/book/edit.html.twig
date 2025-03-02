@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Update Book</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <p>Ref {{ book.ref }}</p>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.publicationDate) }}
+            {{ form_widget(form.publicationDate) }}
+            {{ form_errors(form.publicationDate) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.published) }}
+            {{ form_widget(form.published) }}
+            {{ form_errors(form.published) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category) }}
+            {{ form_errors(form.category) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.author) }}
+            {{ form_widget(form.author) }}
+            {{ form_errors(form.author) }}
+        </div>
+        <div class="mb-3">
+            {{ form_widget(form.save) }}
+        </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('list_books') }}" class="btn btn-secondary mt-3">Back to list</a>
+{% endblock %}

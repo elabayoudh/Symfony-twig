@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Book</h1>
+
+    <p><strong>Title of Book:</strong> {{ book.title }}</p>
+    <p><strong>Publication date:</strong> {{ book.publicationDate|date('F j, Y H:i') }}</p>
+    <p><strong>Author:</strong> {{ book.author.username }}</p>
+
+    <a href="{{ path('list_books') }}" class="btn btn-secondary mt-3">Back to list</a>
+{% endblock %}
